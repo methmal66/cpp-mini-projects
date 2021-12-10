@@ -33,4 +33,12 @@ namespace services {
         file << "name=" << name;
         return "Account " + account_no + " created for " + name;
     }
+
+    bool close_account(string account_no) {
+        if (account_already_exist(account_no)) {
+            fs::remove(fs::path(".accounts").append(account_no));
+            return true;
+        }
+        return false;
+    }
 }

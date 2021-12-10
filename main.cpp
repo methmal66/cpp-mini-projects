@@ -4,9 +4,10 @@
 using namespace std;
 
 int main() {
-    string name;
-    cout << "Enter account holder's name>>> ";
-    cin >> name;
-    cout << services::create_new_account(name);
+    string account_no;
+    cout << "Enter account no>>> ";
+    cin >> account_no;
+    const string message = services::close_account(account_no) ? "Closed account successfully!" : "Account does not exist!";
+    cout << message;
     return EXIT_SUCCESS;
 }
