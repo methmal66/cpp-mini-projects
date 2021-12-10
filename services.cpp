@@ -31,6 +31,7 @@ namespace services {
 
         ofstream file(fs::path(".accounts").append(account_no));
         file << "name=" << name;
+        file << "balance=" << 0.00;
         return "Account " + account_no + " created for " + name;
     }
 
