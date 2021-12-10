@@ -8,16 +8,13 @@ int main() {
     cout << helps::get_ascii_art() << "\n";
 
     short option;
-    cout <<
-        R"(
-        1)Create new account
-        2)Close an account
-        3)Modify an accout
-        4)Enquire balance
-        5)Deposit money
-        6)Withdraw money
-
-        Choose your option from above : )";
+    cout << "\n1)Create new account\n";
+    cout << "2)Close an account\n";
+    cout << "3)Modify an account\n";
+    cout << "4)Enquire balance\n";
+    cout << "5)Deposit money\n";
+    cout << "6)Withdraw money\n\n";
+    cout << "Choose your option from above : ";
     cin >> option;
 
     switch (option) {
