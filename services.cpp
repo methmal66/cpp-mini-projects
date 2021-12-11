@@ -33,7 +33,7 @@ namespace services {
         ofstream file(fs::path(".accounts").append(account_no));
         file << name << "\n" << 0.00;
         file.close();
-        return "Account " + account_no + " created for " + name;
+        return "\nAccount " + account_no + " created for " + name;
     }
 
     string close_account(string account_no) {
