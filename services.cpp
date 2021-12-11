@@ -30,8 +30,8 @@ namespace services {
         while (account_already_exist(account_no));
 
         ofstream file(fs::path(".accounts").append(account_no));
-        file << "name=" << name;
-        file << "balance=" << 0.00;
+        file << name;
+        file << "\n" << 0.00;
         return "Account " + account_no + " created for " + name;
     }
 
