@@ -2,11 +2,12 @@
 #include <filesystem>
 #include <fstream>
 #include <random>
+#include <string>
 
 using namespace std;
 namespace fs = filesystem;
 
-bool account_already_exist(string acc_no) {
+bool account_exist(string acc_no) {
     for (const auto& file : fs::directory_iterator(".accounts"))
         if (acc_no == file.path().filename())
             return true;
@@ -27,19 +28,35 @@ namespace services {
         string account_no;
         do
             account_no = generate_random_account_no();
-        while (account_already_exist(account_no));
+        while (account_exist(account_no));
 
         ofstream file(fs::path(".accounts").append(account_no));
-        file << name;
-        file << "\n" << 0.00;
+        file << name << "\n" << 0.00;
+        file.close();
         return "Account " + account_no + " created for " + name;
     }
 
-    bool close_account(string account_no) {
-        if (account_already_exist(account_no)) {
+    string close_account(string account_no) {
+        if (account_exist(account_no)) {
             fs::remove(fs::path(".accounts").append(account_no));
-            return true;
+            return "\nAccount closed successfully!";
         }
-        return false;
+        return "\nAccount does not exist";
+    }
+
+    string modify_account(string account_no, string new_name) {
+        if (account_exist(account_no)) {
+            string name;
+            float balance;
+            ifstream ifile(fs::path(".accounts").append(account_no));
+            ifile >> name >> balance;
+            ifile.close();
+            ofstream ofile(fs::path(".accounts").append(account_no));
+            cout << name << " " << balance;
+            ofile << new_name << "\n" << balance;
+            ofile.close();
+            return "\n" + name + " changed to " + new_name + " successfully!";
+        }
+        return "\nAccount does not exist!";
     }
 }

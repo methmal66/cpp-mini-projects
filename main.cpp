@@ -26,7 +26,7 @@ int main() {
         cout << "\nEnter account holder's name : ";
         cin >> name;
         cout << services::create_new_account(name);
-        return EXIT_SUCCESS;
+        break;
     }
 
     case 2: {
@@ -34,16 +34,18 @@ int main() {
         cout << "\nClosing an account...";
         cout << "\nEnter account number : ";
         cin >> account_no;
-        if (services::close_account(account_no)) {
-            cout << "Account closed successfully!";
-            return EXIT_SUCCESS;
-        }
-        return EXIT_FAILURE;
+        cout << services::close_account(account_no);
+        break;
     }
 
     case 3: {
-        //modify
-        return EXIT_SUCCESS;
+        string account_no, new_name;
+        cout << "\nEnter account no : ";
+        cin >> account_no;
+        cout << "\nEnter new name to replace : ";
+        cin >> new_name;
+        cout << services::modify_account(account_no, new_name);
+        break;
     }
     case 4: {
         //balance
