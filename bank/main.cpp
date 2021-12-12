@@ -6,8 +6,6 @@ using namespace std;
 
 int main() {
     cout << helps::get_ascii_art() << "\n";
-    cout.precision(2);
-
 
     short option;
     cout << "\n1)Create new account"
@@ -19,28 +17,38 @@ int main() {
     cout << "\n\nChoose your option from above : ";
     cin >> option;
 
+    if (option == 2 || option == 4) {
+        string account_no;
+        const string action = option == 2 ? "Closing an account..." : "Enquiring balance...";
+        cout << "\n" << action;
+        cout << "\nEnter account number : ";
+        cin >> account_no;
+        const string message = option == 2 ? services::close_account(account_no) : services::enquire_balance(account_no);
+        cout << message;
+    }
 
-    switch (option) {
+    if (option == 5 || option == 6) {
+        string account_no;
+        float amount;
+        const string action = option == 5 ? "Depositing" : "Withdrawing";
+        cout << "\n" << action << " money..."
+            << "\nEnter account no : ";
+        cin >> account_no;
+        cout << "Enter amount : ";
+        cin >> amount;
+        const float final_amount = option == 5 ? amount : -amount;
+        cout << services::deposite_money(account_no, final_amount);
+    }
 
-    case 1: {
+    if (option == 1) {
         string name;
         cout << "\nCreating new account...";
         cout << "\nEnter account holder's name : ";
         cin >> name;
         cout << services::create_new_account(name);
-        break;
     }
 
-    case 2: {
-        string account_no;
-        cout << "\nClosing an account..."
-            << "\nEnter account number : ";
-        cin >> account_no;
-        cout << services::close_account(account_no);
-        break;
-    }
-
-    case 3: {
+    if (option == 3) {
         string account_no, new_name;
         cout << "\nModifying account..."
             << "\nEnter account no : ";
@@ -48,41 +56,6 @@ int main() {
         cout << "Enter new name to replace : ";
         cin >> new_name;
         cout << services::modify_account(account_no, new_name);
-        break;
-    }
-    case 4: {
-        string account_no;
-        cout << "\nEnquire balance..."
-            << "\nEnter account number : ";
-        cin >> account_no;
-        cout << services::enquire_balance(account_no);
-        break;
-    }
-    case 5: {
-        string account_no;
-        float amount;
-        cout << "\nDepositing money..."
-            << "\nEnter account no : ";
-        cin >> account_no;
-        cout << "Enter amount : ";
-        cin >> amount;
-        cout << services::deposite_money(account_no, amount);
-        break;
-    }
-    case 6: {
-        string account_no;
-        float amount;
-        cout << "\nDepositing money..."
-            << "\nEnter account no : ";
-        cin >> account_no;
-        cout << "Enter amount : ";
-        cin >> amount;
-        cout << services::deposite_money(account_no, -amount);
-        break;
-    }
-    default:
-        cout << "\nInvalid option!";
-        break;
     }
 
     cout << "\n";

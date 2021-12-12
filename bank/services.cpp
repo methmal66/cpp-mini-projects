@@ -10,7 +10,6 @@ bool account_exist(string account_no) {
     for (const auto& file : filesystem::directory_iterator(".accounts"))
         if (account_no == file.path().filename())
             return true;
-
     return false;
 }
 
@@ -28,7 +27,6 @@ namespace services {
         do
             account_no = generate_random_account_no();
         while (account_exist(account_no));
-
         ofstream file(filesystem::path(".accounts").append(account_no));
         file << name << "\n" << 0.00;
         file.close();
