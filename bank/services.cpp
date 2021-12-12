@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool account_exist(string acc_no) {
+bool account_exist(string account_no) {
     for (const auto& file : filesystem::directory_iterator(".accounts"))
         if (acc_no == file.path().filename())
             return true;
@@ -63,6 +63,7 @@ namespace services {
             string name;
             float balance;
             ifstream file(filesystem::path(".accounts").append(account_no));
+            file.precision(2);
             file >> name >> balance;
             file.close();
             return to_string(balance);
