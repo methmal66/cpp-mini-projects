@@ -57,14 +57,29 @@ int main() {
         break;
     }
     case 5: {
-        //deposit
-        return EXIT_SUCCESS;
+        string account_no;
+        float amount;
+        cout << "\nDepositing money..."
+            << "\nEnter account no : ";
+        cin >> account_no;
+        cout << "\nEnter amount : ";
+        cin >> amount;
+        cout << services::deposite_money(account_no, amount);
+        break;
     }
     case 6: {
-        //withdraw
-        return EXIT_SUCCESS;
+        string account_no;
+        float amount;
+        cout << "\nDepositing money..."
+            << "\nEnter account no : ";
+        cin >> account_no;
+        cout << "\nEnter amount : ";
+        cin >> amount;
+        cout << services::deposite_money(account_no, -amount);
+        break;
     }
     default:
-        return EXIT_FAILURE;
+        cout << "\nInvalid option!";
+        break;
     }
 }

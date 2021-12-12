@@ -63,10 +63,25 @@ namespace services {
             string name;
             float balance;
             ifstream file(filesystem::path(".accounts").append(account_no));
-            file.precision(2);
             file >> name >> balance;
             file.close();
             return to_string(balance);
+        }
+        return "\nAccount does not exist!";
+    }
+
+    string deposite_money(string account_no, float amount) {
+        if (account_exist(account_no)) {
+            string name;
+            float balance;
+            ifstream ifile(filesystem::path(".accounts").append(account_no));
+            ifile >> name >> balance;
+            ifile.close();
+            float new_balance = balance + amount;
+            ofstream ofile(filesystem::path(".accounts").append(account_no));
+            ofile << name << "\n" << new_balance;
+            ofile.close();
+            return "\nBalance successfully changed from  " + to_string(balance) + " to " + to_string(new_balance) + " !";
         }
         return "\nAccount does not exist!";
     }
