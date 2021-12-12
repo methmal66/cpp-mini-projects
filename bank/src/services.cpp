@@ -3,6 +3,7 @@
 #include <fstream>
 #include <random>
 #include <string>
+#include "helps.hpp"
 
 using namespace std;
 
@@ -27,8 +28,8 @@ namespace services {
         do
             account_no = generate_random_account_no();
         while (account_exist(account_no));
-        ofstream file(filesystem::path(".accounts").append(account_no));
-        cout << filesystem::path(".accounts").append(account_no) << "\n";
+        ofstream file(helps::find_appdata_path().append(account_no));
+        cout << helps::find_appdata_path();
         file << name << "\n" << 0.00;
         file.close();
         return "Account " + account_no + " created for " + name;
@@ -36,7 +37,7 @@ namespace services {
 
     string close_account(string account_no) {
         if (account_exist(account_no)) {
-            filesystem::remove(filesystem::path(".accounts").append(account_no));
+            filesystem::remove(helps::find_appdata_path().append(account_no));
             return "Account closed successfully!";
         }
         return "Account does not exist";
@@ -46,10 +47,10 @@ namespace services {
         if (account_exist(account_no)) {
             string name;
             float balance;
-            ifstream ifile(filesystem::path(".accounts").append(account_no));
+            ifstream ifile(helps::find_appdata_path().append(account_no));
             ifile >> name >> balance;
             ifile.close();
-            ofstream ofile(filesystem::path(".accounts").append(account_no));
+            ofstream ofile(helps::find_appdata_path().append(account_no));
             ofile << new_name << "\n" << balance;
             ofile.close();
             return name + " changed to " + new_name + " successfully!";
@@ -61,7 +62,7 @@ namespace services {
         if (account_exist(account_no)) {
             string name;
             float balance;
-            ifstream file(filesystem::path(".accounts").append(account_no));
+            ifstream file(helps::find_appdata_path().append(account_no));
             file >> name >> balance;
             file.close();
             const string str_balance = to_string(balance);
@@ -74,11 +75,11 @@ namespace services {
         if (account_exist(account_no)) {
             string name;
             float balance;
-            ifstream ifile(filesystem::path(".accounts").append(account_no));
+            ifstream ifile(helps::find_appdata_path().append(account_no));
             ifile >> name >> balance;
             ifile.close();
             float new_balance = balance + amount;
-            ofstream ofile(filesystem::path(".accounts").append(account_no));
+            ofstream ofile(helps::find_appdata_path().append(account_no));
             ofile.precision(2);
             ofile << name << "\n" << fixed << new_balance;
             ofile.close();
