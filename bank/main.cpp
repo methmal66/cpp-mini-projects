@@ -6,6 +6,8 @@ using namespace std;
 
 int main() {
     cout << helps::get_ascii_art() << "\n";
+    cout.precision(2);
+
 
     short option;
     cout << "\n1)Create new account"
@@ -43,7 +45,7 @@ int main() {
         cout << "\nModifying account..."
             << "\nEnter account no : ";
         cin >> account_no;
-        cout << "\nEnter new name to replace : ";
+        cout << "Enter new name to replace : ";
         cin >> new_name;
         cout << services::modify_account(account_no, new_name);
         break;
@@ -62,7 +64,7 @@ int main() {
         cout << "\nDepositing money..."
             << "\nEnter account no : ";
         cin >> account_no;
-        cout << "\nEnter amount : ";
+        cout << "Enter amount : ";
         cin >> amount;
         cout << services::deposite_money(account_no, amount);
         break;
@@ -73,7 +75,7 @@ int main() {
         cout << "\nDepositing money..."
             << "\nEnter account no : ";
         cin >> account_no;
-        cout << "\nEnter amount : ";
+        cout << "Enter amount : ";
         cin >> amount;
         cout << services::deposite_money(account_no, -amount);
         break;
@@ -82,4 +84,6 @@ int main() {
         cout << "\nInvalid option!";
         break;
     }
+
+    cout << "\n";
 }

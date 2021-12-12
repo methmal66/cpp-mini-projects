@@ -32,15 +32,15 @@ namespace services {
         ofstream file(filesystem::path(".accounts").append(account_no));
         file << name << "\n" << 0.00;
         file.close();
-        return "\nAccount " + account_no + " created for " + name;
+        return "Account " + account_no + " created for " + name;
     }
 
     string close_account(string account_no) {
         if (account_exist(account_no)) {
             filesystem::remove(filesystem::path(".accounts").append(account_no));
-            return "\nAccount closed successfully!";
+            return "Account closed successfully!";
         }
-        return "\nAccount does not exist";
+        return "Account does not exist";
     }
 
     string modify_account(string account_no, string new_name) {
@@ -53,9 +53,9 @@ namespace services {
             ofstream ofile(filesystem::path(".accounts").append(account_no));
             ofile << new_name << "\n" << balance;
             ofile.close();
-            return "\n" + name + " changed to " + new_name + " successfully!";
+            return name + " changed to " + new_name + " successfully!";
         }
-        return "\nAccount does not exist!";
+        return "Account does not exist!";
     }
 
     string enquire_balance(string account_no) {
@@ -65,9 +65,10 @@ namespace services {
             ifstream file(filesystem::path(".accounts").append(account_no));
             file >> name >> balance;
             file.close();
-            return to_string(balance);
+            const string str_balance = to_string(balance);
+            return str_balance.substr(0, str_balance.length() - 4);
         }
-        return "\nAccount does not exist!";
+        return "Account does not exist!";
     }
 
     string deposite_money(string account_no, float amount) {
@@ -79,10 +80,11 @@ namespace services {
             ifile.close();
             float new_balance = balance + amount;
             ofstream ofile(filesystem::path(".accounts").append(account_no));
-            ofile << name << "\n" << new_balance;
+            ofile.precision(2);
+            ofile << name << "\n" << fixed << new_balance;
             ofile.close();
-            return "\nBalance successfully changed from  " + to_string(balance) + " to " + to_string(new_balance) + " !";
+            return "Balance successfully changed from " + to_string(balance) + " to " + to_string(new_balance) + " !";
         }
-        return "\nAccount does not exist!";
+        return "Account does not exist!";
     }
 }
