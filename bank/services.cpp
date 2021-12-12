@@ -8,7 +8,7 @@ using namespace std;
 
 bool account_exist(string account_no) {
     for (const auto& file : filesystem::directory_iterator(".accounts"))
-        if (acc_no == file.path().filename())
+        if (account_no == file.path().filename())
             return true;
 
     return false;
