@@ -5,10 +5,9 @@
 #include <string>
 
 using namespace std;
-namespace fs = filesystem;
 
 bool account_exist(string acc_no) {
-    for (const auto& file : fs::directory_iterator(".accounts"))
+    for (const auto& file : filesystem::directory_iterator(".accounts"))
         if (acc_no == file.path().filename())
             return true;
 
@@ -30,7 +29,7 @@ namespace services {
             account_no = generate_random_account_no();
         while (account_exist(account_no));
 
-        ofstream file(fs::path(".accounts").append(account_no));
+        ofstream file(filesystem::path(".accounts").append(account_no));
         file << name << "\n" << 0.00;
         file.close();
         return "\nAccount " + account_no + " created for " + name;
@@ -38,7 +37,7 @@ namespace services {
 
     string close_account(string account_no) {
         if (account_exist(account_no)) {
-            fs::remove(fs::path(".accounts").append(account_no));
+            filesystem::remove(filesystem::path(".accounts").append(account_no));
             return "\nAccount closed successfully!";
         }
         return "\nAccount does not exist";
@@ -48,14 +47,25 @@ namespace services {
         if (account_exist(account_no)) {
             string name;
             float balance;
-            ifstream ifile(fs::path(".accounts").append(account_no));
+            ifstream ifile(filesystem::path(".accounts").append(account_no));
             ifile >> name >> balance;
             ifile.close();
-            ofstream ofile(fs::path(".accounts").append(account_no));
-            cout << name << " " << balance;
+            ofstream ofile(filesystem::path(".accounts").append(account_no));
             ofile << new_name << "\n" << balance;
             ofile.close();
             return "\n" + name + " changed to " + new_name + " successfully!";
+        }
+        return "\nAccount does not exist!";
+    }
+
+    string enquire_balance(string account_no) {
+        if (account_exist(account_no)) {
+            string name;
+            float balance;
+            ifstream file(filesystem::path(".accounts").append(account_no));
+            file >> name >> balance;
+            file.close();
+            return to_string(balance);
         }
         return "\nAccount does not exist!";
     }

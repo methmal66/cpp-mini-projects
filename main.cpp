@@ -31,8 +31,8 @@ int main() {
 
     case 2: {
         string account_no;
-        cout << "\nClosing an account...";
-        cout << "\nEnter account number : ";
+        cout << "\nClosing an account..."
+            << "\nEnter account number : ";
         cin >> account_no;
         cout << services::close_account(account_no);
         break;
@@ -40,7 +40,8 @@ int main() {
 
     case 3: {
         string account_no, new_name;
-        cout << "\nEnter account no : ";
+        cout << "\nModifying account..."
+            << "\nEnter account no : ";
         cin >> account_no;
         cout << "\nEnter new name to replace : ";
         cin >> new_name;
@@ -48,8 +49,12 @@ int main() {
         break;
     }
     case 4: {
-        //balance
-        return EXIT_SUCCESS;
+        string account_no;
+        cout << "\nEnquire balance..."
+            << "\nEnter account number : ";
+        cin >> account_no;
+        cout << services::enquire_balance(account_no);
+        break;
     }
     case 5: {
         //deposit
