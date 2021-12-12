@@ -28,6 +28,7 @@ namespace services {
             account_no = generate_random_account_no();
         while (account_exist(account_no));
         ofstream file(filesystem::path(".accounts").append(account_no));
+        cout << filesystem::path(".accounts").append(account_no) << "\n";
         file << name << "\n" << 0.00;
         file.close();
         return "Account " + account_no + " created for " + name;

@@ -1,2 +1,2 @@
 #! /bin/sh
-sudo rm $(cat install_manifest.txt)
+sudo rm $(cat build/install_manifest.txt)
