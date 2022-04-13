@@ -12,8 +12,10 @@ then
     mkdir build
 fi
 
+cd build
 cmake .
 cmake --build .
 sudo make install
+cd ..
 
 echo "Program installed successfully!"
