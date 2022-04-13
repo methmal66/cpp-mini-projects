@@ -13,7 +13,7 @@ then
 fi
 
 cd build
-cmake .
+cmake ..
 cmake --build .
 sudo make install
 cd ..
