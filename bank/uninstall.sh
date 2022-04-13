@@ -1,3 +1,3 @@
 #! /bin/sh
-sudo rm $(cat build/install_manifest.txt)
+sudo rm $(which bank)
 echo "Program uninstalled successfully!"
