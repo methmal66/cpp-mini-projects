@@ -12,25 +12,28 @@ int main(int argc, char** argv) {
 
     auto create = app.add_subcommand("create", "Create an account");
 
+    string accountNo;
     auto close = app.add_subcommand("close", "Close an existing account");
-    string defaultAccountNo = "00000000";
-    close->add_option("-n,--account-no", defaultAccountNo, "Account number you want to do the transaction with");
+    close->add_option("-n,--account-no", accountNo, "Account number you want to do the transaction with");
 
+    string username;
     auto modify = app.add_subcommand("modify", "Modify the username of an existing account");
-    string defaultUsername = "Username";
-    modify->add_option("-n,--account-no", defaultAccountNo, "Account number you want change the username");
-    modify->add_option("-u,--username", "New username of the account");
+    modify->add_option("-n,--account-no", accountNo, "Account number you want change the username");
+    modify->add_option("-u,--username", username, "New username of the account");
 
     auto enquire = app.add_subcommand("enquire", "Enquire account balance");
-    enquire->add_option("-n,--account-no", defaultAccountNo, "Account number you want to check the balance");
+    enquire->add_option("-n,--account-no", accountNo, "Account number you want to check the balance");
 
+    int amount;
     auto deposite = app.add_subcommand("deposite", "Deposite money to bank account");
-    deposite->add_option("-n,--account-no", defaultAccountNo, "Account number you want to deposite money");
+    deposite->add_option("-n,--account-no", accountNo, "Account number you want to deposite money");
     deposite->add_option("-a,--amount", "Amount to be deposited");
 
     auto withdraw = app.add_subcommand("withdraw", "withdraw money from bank account");
-    withdraw->add_option("-n,--account-no", defaultAccountNo, "Account number you want to withdraw money");
-    withdraw->add_option("-a,--amount", "Amount to be withdrawed");
+    withdraw->add_option("-n,--account-no", accountNo, "Account number you want to withdraw money");
+    withdraw->add_option("-a,--amount", amount, "Amount to be withdrawed");
+
+    CLI11_PARSE(app, argc, argv);
 
     short option;
     cout << "\n1)Create new account"
