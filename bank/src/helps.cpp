@@ -2,6 +2,7 @@
 #include <fstream>
 #include <random>
 #include <filesystem>
+#include <stdexcept>
 #include <unistd.h>
 
 using namespace std;
@@ -22,6 +23,13 @@ namespace helps {
             if (account_no == file.path().filename())
                 return true;
         return false;
+    }
+
+    void validate_account(string account_no) {
+        for (const auto& file : filesystem::directory_iterator(".accounts"))
+            if (account_no == file.path().filename())
+                return;
+        throw invalid_argument(": Account does not exist :(");
     }
 
     string generate_random_account_no() {
