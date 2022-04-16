@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "handles.hpp"
+#include "services.hpp"
 #include "helps.hpp"
 #include "CLI11.hpp"
 
@@ -11,12 +12,13 @@ int main(int argc, char** argv) {
     app.require_subcommand(1);
 
     auto create = app.add_subcommand("create", "Create an account");
+    string username;
+    create->add_option("-u,--username", username, "Username of the new account");
 
-    string accountNo;
     auto close = app.add_subcommand("close", "Close an existing account");
+    string accountNo;
     close->add_option("-n,--account-no", accountNo, "Account number you want to do the transaction with");
 
-    string username;
     auto modify = app.add_subcommand("modify", "Modify the username of an existing account");
     modify->add_option("-n,--account-no", accountNo, "Account number you want change the username");
     modify->add_option("-u,--username", username, "New username of the account");
@@ -24,8 +26,8 @@ int main(int argc, char** argv) {
     auto enquire = app.add_subcommand("enquire", "Enquire account balance");
     enquire->add_option("-n,--account-no", accountNo, "Account number you want to check the balance");
 
-    int amount;
     auto deposite = app.add_subcommand("deposite", "Deposite money to bank account");
+    int amount;
     deposite->add_option("-n,--account-no", accountNo, "Account number you want to deposite money");
     deposite->add_option("-a,--amount", amount, "Amount to be deposited");
 
