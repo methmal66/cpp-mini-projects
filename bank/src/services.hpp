@@ -5,9 +5,6 @@
 
 using namespace std;
 
-bool account_exist(string);
-string generate_random_account_no();
-
 namespace services {
     string create_new_account(string);
     string close_account(string);

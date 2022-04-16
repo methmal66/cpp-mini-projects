@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <random>
 #include <filesystem>
 #include <unistd.h>
 
@@ -16,4 +17,17 @@ namespace helps {
         return filesystem::canonical(".accounts");
     }
 
+    bool account_exist(string account_no) {
+        for (const auto& file : filesystem::directory_iterator(".accounts"))
+            if (account_no == file.path().filename())
+                return true;
+        return false;
+    }
+
+    string generate_random_account_no() {
+        random_device rd;
+        mt19937 generator(rd());
+        uniform_int_distribution<> distribute(10000000, 99999999);
+        return to_string(distribute(generator));
+    }
 }

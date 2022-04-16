@@ -1,33 +1,18 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
-#include <random>
 #include <string>
 #include "helps.hpp"
 
 using namespace std;
-
-bool account_exist(string account_no) {
-    for (const auto& file : filesystem::directory_iterator(".accounts"))
-        if (account_no == file.path().filename())
-            return true;
-    return false;
-}
-
-string generate_random_account_no() {
-    random_device rd;
-    mt19937 generator(rd());
-    uniform_int_distribution<> distribute(10000000, 99999999);
-    return to_string(distribute(generator));
-}
 
 namespace services {
 
     string create_new_account(string name) {
         string account_no;
         do
-            account_no = generate_random_account_no();
-        while (account_exist(account_no));
+            account_no = helps::generate_random_account_no();
+        while (helps::account_exist(account_no));
         ofstream file(helps::find_appdata_path().append(account_no));
         cout << helps::find_appdata_path();
         file << name << "\n" << 0.00;
@@ -36,7 +21,7 @@ namespace services {
     }
 
     string close_account(string account_no) {
-        if (account_exist(account_no)) {
+        if (helps::account_exist(account_no)) {
             filesystem::remove(helps::find_appdata_path().append(account_no));
             return "Account closed successfully!";
         }
@@ -44,7 +29,7 @@ namespace services {
     }
 
     string modify_account(string account_no, string new_name) {
-        if (account_exist(account_no)) {
+        if (helps::account_exist(account_no)) {
             string name;
             float balance;
             ifstream ifile(helps::find_appdata_path().append(account_no));
@@ -59,7 +44,7 @@ namespace services {
     }
 
     string enquire_balance(string account_no) {
-        if (account_exist(account_no)) {
+        if (helps::account_exist(account_no)) {
             string name;
             float balance;
             ifstream file(helps::find_appdata_path().append(account_no));
@@ -72,7 +57,7 @@ namespace services {
     }
 
     string deposite_money(string account_no, float amount) {
-        if (account_exist(account_no)) {
+        if (helps::account_exist(account_no)) {
             string name;
             float balance;
             ifstream ifile(helps::find_appdata_path().append(account_no));
