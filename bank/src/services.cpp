@@ -23,7 +23,7 @@ namespace services {
     string close_account(string account_no) {
         if (helps::account_exist(account_no)) {
             filesystem::remove(helps::find_appdata_path().append(account_no));
-            return "Account closed successfully!";
+            return "Success!";
         }
         return "Account does not exist";
     }
@@ -38,7 +38,7 @@ namespace services {
             ofstream ofile(helps::find_appdata_path().append(account_no));
             ofile << new_name << "\n" << balance;
             ofile.close();
-            return name + " changed to " + new_name + " successfully!";
+            return "Success!";
         }
         return "Account does not exist!";
     }
@@ -68,7 +68,7 @@ namespace services {
             ofile.precision(2);
             ofile << name << "\n" << fixed << new_balance;
             ofile.close();
-            return "Balance successfully changed from " + to_string(balance) + " to " + to_string(new_balance) + " !";
+            return "Success!";
         }
         return "Account does not exist!";
     }
