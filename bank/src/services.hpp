@@ -5,15 +5,13 @@
 
 using namespace std;
 
-bool account_exist(string);
-string generate_random_account_no();
-
 namespace services {
-    string create_new_account(string);
-    string close_account(string);
-    string modify_account(string, string);
-    string enquire_balance(string);
-    string deposite_money(string, float);
+    void create_new_account(string);
+    void close_account(string);
+    void modify_account(string, string);
+    void enquire_balance(string);
+    void deposite_money(string, float);
+    void withdraw_money(string, float);
 }
 
 #endif

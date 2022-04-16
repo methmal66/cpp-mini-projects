@@ -2,6 +2,8 @@
     "files.associations": {
         "chrono": "cpp",
         "filesystem": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "optional": "cpp",
+        "variant": "cpp"
     }
 }

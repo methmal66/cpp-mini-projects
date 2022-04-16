@@ -11,10 +11,11 @@ if [ ! -d build ]
 then 
     mkdir build
 fi
+
 cd build
-cmake ../src
+cmake ..
 cmake --build .
 sudo make install
-
 cd ..
+
 echo "Program installed successfully!"

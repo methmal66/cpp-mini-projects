@@ -1,2 +1,8 @@
 build
 .accounts/*
+CMakeFiles
+bank
+cmake_install.cmake
+CMakeCache.txt
+install_manifest.txt
+Makefile
