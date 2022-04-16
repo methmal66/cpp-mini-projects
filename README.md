@@ -1,4 +1,4 @@
-# Cpp Mini Projects ![release](https://img.shields.io/github/v/release/methmal66/cpp-mini-projects?color=blue)
+# C++ Mini Projects ![release](https://img.shields.io/github/v/release/methmal66/cpp-mini-projects?color=blue)
 Mini projects to learn c++. Recommened for students who are follwoing OOC module. Built with ❤️
 
 ![stars](https://img.shields.io/github/stars/methmal66/cpp-mini-projects?style=social)
@@ -11,7 +11,7 @@ We had a module called OOC (Object Oriented Programming) in our 1st year 2nd sem
 ## How to get the most juice out of this repo 🍹
 - Try to read this code base and understand how it works. Some concepts may not familiar to you. Then put some effort to search them online. Try to see the big picture here.
 - Try to rebulid this project on your own. Get a basic idea from this code base and make a different version of that, or even a better version.
-- Contribute to this repo. Contributing code will help you with programming as well as version controlling. Its the best way to learn prgramming, in my opinion. I will provide instructions on how to contribute!
+- Contribute to this repo. Contributing code will help you with programming as well as version controlling. Its the best way to learn prgramming, in my opinion. Contributing instructions are provied [here](CONTRIBUTING.md)
 
 ```
 "Open Source contribution is the best way to learn programming"
