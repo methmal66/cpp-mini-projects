@@ -17,60 +17,60 @@ namespace services {
         cout << helps::find_appdata_path();
         file << name << "\n" << 0.00;
         file.close();
-        return "Account " + account_no + " created for " + name;
+        cout << "Account " + account_no + " created for " + name;
     }
 
     string close_account(string account_no) {
-        if (helps::account_exist(account_no)) {
-            filesystem::remove(helps::find_appdata_path().append(account_no));
-            return "Success!";
+        if (!helps::account_exist(account_no)) {
+            return "Account does not exist";
         }
-        return "Account does not exist";
+        filesystem::remove(helps::find_appdata_path().append(account_no));
+        return "Success!";
     }
 
     string modify_account(string account_no, string new_name) {
-        if (helps::account_exist(account_no)) {
-            string name;
-            float balance;
-            ifstream ifile(helps::find_appdata_path().append(account_no));
-            ifile >> name >> balance;
-            ifile.close();
-            ofstream ofile(helps::find_appdata_path().append(account_no));
-            ofile << new_name << "\n" << balance;
-            ofile.close();
-            return "Success!";
+        if (!helps::account_exist(account_no)) {
+            return "Account does not exist!";
         }
-        return "Account does not exist!";
+        string name;
+        float balance;
+        ifstream ifile(helps::find_appdata_path().append(account_no));
+        ifile >> name >> balance;
+        ifile.close();
+        ofstream ofile(helps::find_appdata_path().append(account_no));
+        ofile << new_name << "\n" << balance;
+        ofile.close();
+        return "Success!";
     }
 
     string enquire_balance(string account_no) {
-        if (helps::account_exist(account_no)) {
-            string name;
-            float balance;
-            ifstream file(helps::find_appdata_path().append(account_no));
-            file >> name >> balance;
-            file.close();
-            const string str_balance = to_string(balance);
-            return str_balance.substr(0, str_balance.length() - 4);
+        if (!helps::account_exist(account_no)) {
+            return "Account does not exist!";
         }
-        return "Account does not exist!";
+        string name;
+        float balance;
+        ifstream file(helps::find_appdata_path().append(account_no));
+        file >> name >> balance;
+        file.close();
+        const string str_balance = to_string(balance);
+        return str_balance.substr(0, str_balance.length() - 4);
     }
 
     string deposite_money(string account_no, float amount) {
-        if (helps::account_exist(account_no)) {
-            string name;
-            float balance;
-            ifstream ifile(helps::find_appdata_path().append(account_no));
-            ifile >> name >> balance;
-            ifile.close();
-            float new_balance = balance + amount;
-            ofstream ofile(helps::find_appdata_path().append(account_no));
-            ofile.precision(2);
-            ofile << name << "\n" << fixed << new_balance;
-            ofile.close();
-            return "Success!";
+        if (!helps::account_exist(account_no)) {
+            return "Account does not exist!";
         }
-        return "Account does not exist!";
+        string name;
+        float balance;
+        ifstream ifile(helps::find_appdata_path().append(account_no));
+        ifile >> name >> balance;
+        ifile.close();
+        float new_balance = balance + amount;
+        ofstream ofile(helps::find_appdata_path().append(account_no));
+        ofile.precision(2);
+        ofile << name << "\n" << fixed << new_balance;
+        ofile.close();
+        return "Success!";
     }
 
     //reuse deposite_money function without reinventing the wheel. Its also make the api more abstract    
