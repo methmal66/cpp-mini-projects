@@ -87,4 +87,9 @@ namespace services {
         }
         return "Account does not exist!";
     }
+
+    //reuse deposite_money function without reinventing the wheel. Its also make the api more abstract    
+    string withdraw_money(string account_no, float amount) {
+        return deposite_money(account_no, -amount);
+    }
 }

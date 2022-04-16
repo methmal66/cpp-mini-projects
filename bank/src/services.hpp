@@ -14,6 +14,7 @@ namespace services {
     string modify_account(string, string);
     string enquire_balance(string);
     string deposite_money(string, float);
+    string withdraw_money(string, float);
 }
 
 #endif
