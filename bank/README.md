@@ -20,3 +20,13 @@ sudo chmod +x install.sh
 sudo chmod +x uninstall.sh
 ./uninstall.sh
 ```
+## Sample usage
+```
+bank --help
+bank modify --h
+bank create -u methmal
+bank deposite -n 12345678 -a 1000
+bank withdraw -n 12345678 -a 500
+bank enquire -n 12345678
+bank modify -n 12345678 -u sanuja
+```
