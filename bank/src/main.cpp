@@ -27,11 +27,16 @@ int main(int argc, char** argv) {
     int amount;
     auto deposite = app.add_subcommand("deposite", "Deposite money to bank account");
     deposite->add_option("-n,--account-no", accountNo, "Account number you want to deposite money");
-    deposite->add_option("-a,--amount", "Amount to be deposited");
+    deposite->add_option("-a,--amount", amount, "Amount to be deposited");
 
     auto withdraw = app.add_subcommand("withdraw", "withdraw money from bank account");
     withdraw->add_option("-n,--account-no", accountNo, "Account number you want to withdraw money");
-    withdraw->add_option("-a,--amount", amount, "Amount to be withdrawed");
+    withdraw->add_option("-a,--amount", amount, "Amount to be withddrawed");
+
+    auto help = app.add_subcommand("help")->silent();
+    help->parse_complete_callback([]() {
+        throw CLI::CallForHelp();
+        });
 
     CLI11_PARSE(app, argc, argv);
 
