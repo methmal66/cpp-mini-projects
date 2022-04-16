@@ -1,4 +1,4 @@
-# C++ Mini Projects ![release](https://img.shields.io/github/v/release/methmal66/cpp-mini-projects?color=blue)
+# C++ Mini Projects ![release](https://img.shields.io/github/v/release/methmal66/cpp-mini-projects)
 Mini projects to learn c++. Recommened for students who are follwoing OOC module. Lot of new coor projects are comming soon. It is adviced to use WSL when installing this programs. Because thoese are written inside a Linux environment, targeting linux platforms. Built with ❤️
 
 ![stars](https://img.shields.io/github/stars/methmal66/cpp-mini-projects?style=social)
